@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Proxy Hub Dashboard</title>
+    <style>
+        /* --- Global Setup --- */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+        }
+
+        /* --- Master Container --- */
+        .master-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            padding: 40px 20px;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
+        }
+
+        .main-header {
+            font-size: 64px;
+            font-weight: 900;
+            letter-spacing: 10px;
+            margin-bottom: 50px;
+            text-transform: uppercase;
+            text-align: center;
+            background: linear-gradient(#fff, #555);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(255,255,255,0.2));
+        }
+
+        /* --- Horizontal Columns --- */
+        .dashboard-grid {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 40px;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 320px;
+            text-align: center;
+            padding: 25px;
+            border-radius: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .column:hover {
+            transform: translateY(-5px);
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* --- Column Specific Styles --- */
+
+        /* Left: Rammerhead */
+        .rammerhead-col {
+            background: rgba(40, 40, 40, 0.5);
+            border: 1px solid #333;
+        }
+        .rammerhead-btn {
+            background-color: #333;
+            color: #fff;
+            border: 1px solid #444;
+            padding: 12px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .rammerhead-btn:hover { background-color: #555; }
+
+        /* Middle: Utopia */
+        .utopia-col {
+            background: rgba(48, 43, 99, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        .utopia-btn {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .utopia-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
+
+        /* Right: Doge */
+        .doge-col {
+            background: rgba(44, 30, 5, 0.5);
+            border: 1px solid #5e4218;
+        }
+        .doge-btn {
+            background-color: #3d2b0e;
+            color: #ffb347;
+            border: 2px solid #5e4218;
+            padding: 14px;
+            font-weight: bold;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .doge-btn:hover { background-color: #5e4218; color: #fff; }
+
+        button {
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="master-wrapper">
+        <h1 class="main-header">PROXY LINKS</h1>
+
+        <div class="dashboard-grid">
+            
+            <div class="column rammerhead-col">
+                <h2>Rammerhead</h2>
+                <button class="rammerhead-btn" onclick="launch('Method 1', 'https://shorturl.at/xYJ2i')">Method 1</button>
+                <button class="rammerhead-btn" onclick="launch('Method 2', 'https://shorturl.at/AUwez')">Method 2</button>
+                <button class="rammerhead-btn" onclick="launch('Method 3', 'https://shorturl.at/5jV3s')">Method 3</button>
+                <button class="rammerhead-btn" onclick="launch('Method 4', 'https://shorturl.at/mHnrL')">Method 4</button>
+                <button class="rammerhead-btn" onclick="launch('Method 5', 'https://shorturl.at/sGcBw')">Method 5</button>
+                <button class="rammerhead-btn" onclick="launch('Method 6', 'https://shorturl.at/eq24A')">Method 6</button>
+                <button class="rammerhead-btn" onclick="launch('Method 7', 'https://shorturl.at/izvVU')">Method 7</button>
+                <button class="rammerhead-btn" onclick="launch('Method 8', 'https://shorturl.at/TiwOt')">Method 8</button>
+            </div>
+
+            <div class="column utopia-col">
+                <h2 style="color: #999;">Utopia</h2>
+                <button class="utopia-btn" onclick="launch('Method 1', 'https://vocab.clever.jaytex.org/')">Method 1</button>
+                <button class="utopia-btn" onclick="launch('Method 2', 'https://graph.train.thinkgarden.com/')">Method 2</button>
+                <button class="utopia-btn" onclick="launch('Method 3', 'https://core.atom.sv-italia.it/')">Method 3</button>
+                <button class="utopia-btn" onclick="launch('Method 4', 'https://skill.mass.mcdonnell.id.au/')">Method 4</button>
+                <button class="utopia-btn" onclick="launch('Method 5', 'https://skills.graph.holverson.org/')">Method 5</button>
+            </div>
+
+            <div class="column doge-col">
+                <h2 style="color: #ffb347;">Doge Unblocker</h2>
+                <button class="doge-btn" onclick="launch('Method 1', 'https://eq3.dawuiiwauidwahyuiwahuioqwd.site/')">Method 1</button>
+                <button class="doge-btn" onclick="launch('Method 2', 'https://e.outdoorzone.ie/')">Method 2</button>
+                <button class="doge-btn" onclick="launch('Method 3', 'https://use.shengdayule666.com/')">Method 3</button>
+                <button class="doge-btn" onclick="launch('Method 4', 'https://edu.tridecap.cl/')">Method 4</button>
+                <button class="doge-btn" onclick="launch('Method 5', 'https://edu.blxd.ru/')">Method 5</button>
+                <button class="doge-btn" onclick="launch('Method 6', 'https://order.nullsupply.co/')">Method 6</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function launch(name, url) {
+            const newTab = window.open('about:blank', '_blank');
+            if (!newTab) {
+                alert('Popup blocked! Please allow popups to open the link.');
+                return;
+            }
+
+            // Set background to initial (default white) to fix Rammerhead rendering
+            const content = `
+<!DOCTYPE html>
+<html>
+<head>
+    <title>${name}</title>
+    <style>
+        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #fff; }
+        iframe { border: none; width: 100%; height: 100%; }
+    </style>
+</head>
+<body>
+    <iframe src="${url}"></iframe>
+</body>
+</html>`;
+
+            newTab.document.open();
+            newTab.document.write(content);
+            newTab.document.close();
+        }
+    </script>
+</body>
+</html>
