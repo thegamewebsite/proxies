@@ -45,7 +45,7 @@
             flex-direction: row;
             justify-content: center;
             align-items: flex-start;
-            gap: 40px;
+            gap: 20px;
             width: 100%;
             flex-wrap: wrap;
         }
@@ -54,7 +54,7 @@
             display: flex;
             flex-direction: column;
             gap: 15px;
-            width: 320px;
+            width: 280px;
             text-align: center;
             padding: 25px;
             border-radius: 20px;
@@ -66,13 +66,31 @@
         }
 
         h2 {
-            font-size: 24px;
+            font-size: 20px;
             margin-bottom: 20px;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
         /* --- Column Specific Styles --- */
+
+        /* UV Static Column */
+        .uv-col {
+            background: rgba(88, 28, 135, 0.2);
+            border: 1px solid #7c3aed;
+        }
+        .uv-btn {
+            background: linear-gradient(135deg, #7c3aed 0%, #2563eb 100%);
+            color: #fff;
+            border: none;
+            padding: 14px;
+            font-weight: 800;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
+            transition: 0.3s;
+        }
+        .uv-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
         /* Left: Rammerhead */
         .rammerhead-col {
@@ -140,6 +158,11 @@
 
         <div class="dashboard-grid">
             
+            <div class="column uv-col">
+                <h2 style="color: #a78bfa;">Ultraviolet</h2>
+                <button class="uv-btn" onclick="launch('UV Static', 'https://uvv2.rhw.one/active/')">UV Static</button>
+            </div>
+
             <div class="column rammerhead-col">
                 <h2>Rammerhead</h2>
                 <button class="rammerhead-btn" onclick="launch('Method 1', 'https://shorturl.at/xYJ2i')">Method 1</button>
