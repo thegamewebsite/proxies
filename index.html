@@ -8,7 +8,6 @@
     <link rel="icon" type="image/png" href="https://thegamewebsite.github.io/logo.png?v=13">
 
     <style>
-        /* --- Global Setup --- */
         html, body {
             height: 100%;
             margin: 0;
@@ -19,7 +18,6 @@
             overflow-x: hidden;
         }
 
-        /* --- Master Container --- */
         .master-wrapper {
             display: flex;
             flex-direction: column;
@@ -29,7 +27,6 @@
             background: radial-gradient(circle at center, #1a1a1a 0%, #000 100%);
         }
 
-        /* --- Top Header Area --- */
         .header-container {
             display: flex;
             align-items: center;
@@ -52,7 +49,6 @@
             margin: 0;
         }
 
-        /* --- UV Static (Next to Header) --- */
         .uv-top-box {
             background: rgba(88, 28, 135, 0.2);
             border: 1px solid #7c3aed;
@@ -73,9 +69,7 @@
             text-transform: uppercase;
             font-size: 12px;
         }
-        .uv-btn:hover { transform: scale(1.05); filter: brightness(1.2); }
 
-        /* --- Grid Layout --- */
         .dashboard-grid {
             display: flex;
             flex-direction: row;
@@ -97,8 +91,6 @@
             transition: transform 0.3s ease;
         }
 
-        .column:hover { transform: translateY(-5px); }
-
         h2 {
             font-size: 20px;
             margin-bottom: 20px;
@@ -106,9 +98,6 @@
             letter-spacing: 2px;
         }
 
-        /* --- Column Styles --- */
-
-        /* LEFT: Rammerhead */
         .rammerhead-col { background: rgba(40, 40, 40, 0.5); border: 1px solid #333; }
         .rammerhead-btn {
             background-color: #333;
@@ -121,9 +110,7 @@
             transition: 0.2s;
             text-transform: uppercase;
         }
-        .rammerhead-btn:hover { background-color: #555; }
 
-        /* MIDDLE: Utopia */
         .utopia-col {
             background: rgba(48, 43, 99, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -140,9 +127,7 @@
             transition: 0.3s;
             text-transform: uppercase;
         }
-        .utopia-btn:hover { background-color: rgba(255, 255, 255, 0.2); }
 
-        /* RIGHT: Doge */
         .doge-col { background: rgba(44, 30, 5, 0.5); border: 1px solid #5e4218; }
         .doge-btn {
             background-color: #3d2b0e;
@@ -155,7 +140,25 @@
             transition: 0.3s;
             text-transform: uppercase;
         }
-        .doge-btn:hover { background-color: #5e4218; color: #fff; }
+
+        .reload-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .reload-title {
+            font-size: 13px;
+            color: #aaa;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .small-btn {
+            font-size: 11px;
+            padding: 8px;
+            margin-bottom: 8px;
+            width: 100%;
+        }
 
     </style>
 </head>
@@ -164,7 +167,6 @@
     <div class="master-wrapper">
         <div class="header-container">
             <h1 class="main-header">PROXY LINKS</h1>
-            
             <div class="uv-top-box">
                 <h2 style="color: #a78bfa; margin-bottom: 10px; font-size: 16px;">Ultraviolet</h2>
                 <button class="uv-btn" onclick="launch('Interstellar', 'https://blackattacker.tvjumbleanswers.com/')">Interstellar</button>
@@ -186,22 +188,24 @@
             <div class="column utopia-col">
                 <h2 style="color: #999;">Utopia</h2>
                 <button class="utopia-btn" onclick="launch('Method 1', 'https://vocab.clever.jaytex.org/')">Method 1</button>
-                <button class="utopia-btn" onclick="launch('Method 2', 'https://graph.train.thinkgarden.com/')">Method 2</button>
-                <button class="utopia-btn" onclick="launch('Method 3', 'https://core.atom.sv-italia.it/')">Method 3</button>
-                <button class="utopia-btn" onclick="launch('Method 4', 'https://skill.mass.mcdonnell.id.au/')">Method 4</button>
-                <button class="utopia-btn" onclick="launch('Method 5', 'https://skills.graph.holverson.org/')">Method 5</button>
+
+                <div class="reload-section">
+                    <span class="reload-title">Utopia (Reload opened page)</span>
+                    <button class="utopia-btn small-btn" onclick="launchRegular('https://core.atom.sv-italia.it/')">Method 2</button>
+                    <button class="utopia-btn small-btn" onclick="launchRegular('https://teach.media.eyesound.net/')">Method 3</button>
+                </div>
             </div>
 
             <div class="column doge-col">
                 <h2 style="color: #ffb347;">Doge Unblocker</h2>
                 <button class="doge-btn" onclick="launch('Method 1', 'https://educationate.space.cdn.cloudflare.net/')">Method 1</button>
-                
             </div>
 
         </div>
     </div>
 
     <script>
+        // Cloaked Launcher (about:blank)
         function launch(name, url) {
             const newTab = window.open('about:blank', '_blank');
             if (!newTab) {
@@ -216,7 +220,6 @@
                     <title>Clever | Log in</title>
                     <link rel="icon" type="image/png" href="https://thegamewebsite.github.io/logo.png">
                     <style>
-                        /* WHITE BACKGROUND FOR THE LAUNCHED SITE */
                         body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #fff; }
                         iframe { border: none; width: 100%; height: 100%; }
                     </style>
@@ -229,6 +232,11 @@
             newTab.document.open();
             newTab.document.write(content);
             newTab.document.close();
+        }
+
+        // Regular Launcher (Standard Tab)
+        function launchRegular(url) {
+            window.open(url, '_blank');
         }
     </script>
 </body>
