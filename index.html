@@ -275,7 +275,7 @@
         function launch(name, url) {
             const light = document.getElementById('scramjet-light');
             if (url.includes('github.dev') && light.classList.contains('status-offline')) {
-                alert("The Scramjet Codespace is currently OFFLINE. Please start it in GitHub before launching.");
+                alert("The Codespace is currently offline, ask me to start it up or just use a different proxy.");
                 return;
             }
 
