@@ -69,6 +69,7 @@
         }
 
         .status-online { background-color: #00ff00; box-shadow: 0 0 12px #00ff00; }
+        .status-idle { background-color: #ffaa00; box-shadow: 0 0 12px #ffaa00; }
         .status-offline { background-color: #ff0000; box-shadow: 0 0 12px #ff0000; }
         .status-text { font-size: 10px; color: #888; letter-spacing: 2px; text-transform: uppercase; }
 
@@ -119,73 +120,13 @@
             transition: transform 0.3s ease;
         }
 
-        h2 {
-            font-size: 20px;
-            margin-bottom: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
+        h2 { font-size: 20px; margin-bottom: 20px; text-transform: uppercase; letter-spacing: 2px; }
         .rammerhead-col { background: rgba(40, 40, 40, 0.5); border: 1px solid #333; }
-        .rammerhead-btn {
-            background-color: #333;
-            color: #fff;
-            border: 1px solid #444;
-            padding: 12px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: 0.2s;
-            text-transform: uppercase;
-        }
-
-        .utopia-col {
-            background: rgba(48, 43, 99, 0.3);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-        .utopia-btn {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 14px;
-            font-weight: 600;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
+        .rammerhead-btn { background-color: #333; color: #fff; border: 1px solid #444; padding: 12px; font-weight: bold; border-radius: 5px; cursor: pointer; transition: 0.2s; text-transform: uppercase; }
+        .utopia-col { background: rgba(48, 43, 99, 0.3); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); }
+        .utopia-btn { background-color: rgba(255, 255, 255, 0.1); color: #fff; border: 1px solid rgba(255, 255, 255, 0.2); padding: 14px; font-weight: 600; border-radius: 8px; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
         .doge-col { background: rgba(44, 30, 5, 0.5); border: 1px solid #5e4218; }
-        .doge-btn {
-            background-color: #3d2b0e;
-            color: #ffb347;
-            border: 2px solid #5e4218;
-            padding: 14px;
-            font-weight: bold;
-            border-radius: 12px;
-            cursor: pointer;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        .reload-section {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-        }
-        .reload-title {
-            font-size: 13px;
-            color: #aaa;
-            text-transform: uppercase;
-            margin-bottom: 10px;
-            display: block;
-        }
-        .small-btn {
-            font-size: 11px;
-            padding: 8px;
-            width: 100%;
-        }
+        .doge-btn { background-color: #3d2b0e; color: #ffb347; border: 2px solid #5e4218; padding: 14px; font-weight: bold; border-radius: 12px; cursor: pointer; transition: 0.3s; text-transform: uppercase; }
 
     </style>
 </head>
@@ -195,7 +136,7 @@
         <div class="header-container">
             <h1 class="main-header">PROXY LINKS</h1>
             
-            <div class="scramjet-box" id="scramjet-trigger" onclick="launch('Scramjet', 'https://psychic-fortnight-44pg4rqqpx6c5qxg-8080.app.github.dev/')">
+            <div class="scramjet-box" id="scramjet-trigger" onclick="launch('Scramjet', 'https://superdupereducational.onrender.com/')">
                 <h2 class="scramjet-title">SCRAMJET</h2>
                 <div class="status-container">
                     <div id="scramjet-light" class="status-light"></div>
@@ -205,7 +146,6 @@
         </div>
 
         <div class="dashboard-grid">
-            
             <div class="column rammerhead-col">
                 <h2>Rammerhead</h2>
                 <button class="rammerhead-btn" onclick="launch('Method 1', 'https://shorturl.at/xYJ2i')">Method 1</button>
@@ -217,68 +157,54 @@
                 <button class="utopia-btn" onclick="launch('Method 1', 'https://vocab.clever.jaytex.org/')">Method 1</button>
                 <button class="utopia-btn" onclick="launch('Method 2', 'https://food.fit-tw.com/')">Method 2</button>
                 <button class="utopia-btn" onclick="launch('Method 3', 'https://calculator.hotelconsuladoinn.com/')">Method 3</button>
-
-                <div class="reload-section">
-                    <span class="reload-title">Utopia (Reload)</span>
-                    <button class="utopia-btn small-btn" onclick="launchRegular('https://core.atom.sv-italia.it/')">Method 2</button>
-                    <button class="utopia-btn small-btn" onclick="launchRegular('https://teach.media.eyesound.net/')">Method 3</button>
-                </div>
             </div>
 
             <div class="column doge-col">
                 <h2 style="color: #ffb347;">Doge Unblocker</h2>
                 <button class="doge-btn" onclick="launch('Method 1', 'https://educationate.space.cdn.cloudflare.net/')">Method 1</button>
             </div>
-
         </div>
     </div>
 
     <script>
-        const SCRAMJET_URL = 'https://psychic-fortnight-44pg4rqqpx6c5qxg-8080.app.github.dev/';
+        const RENDER_URL = 'https://superdupereducational.onrender.com/';
 
-        // v3 Accurate Status Checker
-        function checkStatus() {
+        async function checkStatus() {
             const light = document.getElementById('scramjet-light');
             const text = document.getElementById('scramjet-status-text');
 
-            // Strategy: Try to load an image from the URL. 
-            // If the codespace is off, GitHub will redirect to a login page, which fails as an image.
-            const img = new Image();
-            
-            // Set a strict 4-second timeout
-            const timer = setTimeout(() => {
-                img.onload = img.onerror = null; // Clean up
-                light.className = 'status-light status-offline';
-                text.innerText = 'Offline - Timeout';
-            }, 4000);
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 6000);
 
-            img.onload = function() {
-                clearTimeout(timer);
+            try {
+                // We use 'no-cors' to ping the Render URL
+                const response = await fetch(RENDER_URL, { 
+                    mode: 'no-cors', 
+                    cache: 'no-cache',
+                    signal: controller.signal 
+                });
+
+                // If we get a response, it's alive!
                 light.className = 'status-light status-online';
                 text.innerText = 'Online - Ready to launch';
-            };
-
-            img.onerror = function() {
-                clearTimeout(timer);
-                light.className = 'status-light status-offline';
-                text.innerText = 'Offline - Codespace stopped';
-            };
-
-            // We add a random query to bypass browser cache
-            img.src = SCRAMJET_URL + "favicon.ico?v=" + Math.random();
+            } catch (error) {
+                if (error.name === 'AbortError') {
+                    // Render takes time to wake up. If it times out, it's likely "Idle"
+                    light.className = 'status-light status-idle';
+                    text.innerText = 'Idle - Waking Up...';
+                } else {
+                    light.className = 'status-light status-offline';
+                    text.innerText = 'Offline - Server Error';
+                }
+            } finally {
+                clearTimeout(timeoutId);
+            }
         }
 
-        // Run on load and every 20 seconds
         checkStatus();
-        setInterval(checkStatus, 20000);
+        setInterval(checkStatus, 30000); // Check every 30s for Render
 
         function launch(name, url) {
-            const light = document.getElementById('scramjet-light');
-            if (url.includes('github.dev') && light.classList.contains('status-offline')) {
-                alert("The Codespace is currently offline, ask me to start it up or just use a different proxy.");
-                return;
-            }
-
             const newTab = window.open('about:blank', '_blank');
             if (!newTab) {
                 alert('Popup blocked!');
@@ -292,7 +218,7 @@
                     <title>Clever | Log in</title>
                     <link rel="icon" type="image/png" href="https://thegamewebsite.github.io/logo.png">
                     <style>
-                        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #fff; }
+                        body, html { margin: 0; padding: 0; height: 100%; width: 100%; overflow: hidden; background: #000; }
                         iframe { border: none; width: 100%; height: 100%; }
                     </style>
                 </head>
