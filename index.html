@@ -50,7 +50,28 @@
             margin: 0;
         }
 
-        /* The Big Boy Scramjet Button */
+        /* Status Light Styling */
+        .status-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .status-light {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #555; 
+            box-shadow: 0 0 5px rgba(255,255,255,0.2);
+            transition: 0.3s;
+        }
+
+        .status-online { background-color: #00ff00; box-shadow: 0 0 12px #00ff00; }
+        .status-offline { background-color: #ff0000; box-shadow: 0 0 12px #ff0000; }
+        .status-text { font-size: 10px; color: #888; letter-spacing: 2px; text-transform: uppercase; }
+
         .scramjet-box {
             background: rgba(255, 255, 255, 0.05);
             border: 2px solid #fff;
@@ -174,9 +195,12 @@
         <div class="header-container">
             <h1 class="main-header">PROXY LINKS</h1>
             
-            <div class="scramjet-box" onclick="launch('Scramjet', 'https://psychic-fortnight-44pg4rqqpx6c5qxg-8080.app.github.dev/')">
+            <div class="scramjet-box" id="scramjet-trigger" onclick="launch('Scramjet', 'https://psychic-fortnight-44pg4rqqpx6c5qxg-8080.app.github.dev/')">
                 <h2 class="scramjet-title">SCRAMJET</h2>
-                <span style="font-size: 10px; color: #888; letter-spacing: 2px;">CLICK TO LAUNCH CLOAKED</span>
+                <div class="status-container">
+                    <div id="scramjet-light" class="status-light"></div>
+                    <span id="scramjet-status-text" class="status-text">Detecting Server...</span>
+                </div>
             </div>
         </div>
 
@@ -210,7 +234,51 @@
     </div>
 
     <script>
+        const SCRAMJET_URL = 'https://psychic-fortnight-44pg4rqqpx6c5qxg-8080.app.github.dev/';
+
+        // v3 Accurate Status Checker
+        function checkStatus() {
+            const light = document.getElementById('scramjet-light');
+            const text = document.getElementById('scramjet-status-text');
+
+            // Strategy: Try to load an image from the URL. 
+            // If the codespace is off, GitHub will redirect to a login page, which fails as an image.
+            const img = new Image();
+            
+            // Set a strict 4-second timeout
+            const timer = setTimeout(() => {
+                img.onload = img.onerror = null; // Clean up
+                light.className = 'status-light status-offline';
+                text.innerText = 'Offline - Timeout';
+            }, 4000);
+
+            img.onload = function() {
+                clearTimeout(timer);
+                light.className = 'status-light status-online';
+                text.innerText = 'Online - Ready to launch';
+            };
+
+            img.onerror = function() {
+                clearTimeout(timer);
+                light.className = 'status-light status-offline';
+                text.innerText = 'Offline - Codespace stopped';
+            };
+
+            // We add a random query to bypass browser cache
+            img.src = SCRAMJET_URL + "favicon.ico?v=" + Math.random();
+        }
+
+        // Run on load and every 20 seconds
+        checkStatus();
+        setInterval(checkStatus, 20000);
+
         function launch(name, url) {
+            const light = document.getElementById('scramjet-light');
+            if (url.includes('github.dev') && light.classList.contains('status-offline')) {
+                alert("The Scramjet Codespace is currently OFFLINE. Please start it in GitHub before launching.");
+                return;
+            }
+
             const newTab = window.open('about:blank', '_blank');
             if (!newTab) {
                 alert('Popup blocked!');
