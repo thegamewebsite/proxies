@@ -177,19 +177,16 @@
             const timeoutId = setTimeout(() => controller.abort(), 6000);
 
             try {
-                // We use 'no-cors' to ping the Render URL
                 const response = await fetch(RENDER_URL, { 
                     mode: 'no-cors', 
                     cache: 'no-cache',
                     signal: controller.signal 
                 });
 
-                // If we get a response, it's alive!
                 light.className = 'status-light status-online';
                 text.innerText = 'Online - Ready to launch';
             } catch (error) {
                 if (error.name === 'AbortError') {
-                    // Render takes time to wake up. If it times out, it's likely "Idle"
                     light.className = 'status-light status-idle';
                     text.innerText = 'Idle - Waking Up...';
                 } else {
@@ -202,9 +199,16 @@
         }
 
         checkStatus();
-        setInterval(checkStatus, 30000); // Check every 30s for Render
+        setInterval(checkStatus, 30000);
 
         function launch(name, url) {
+            // FIXED: If it is the Render URL, open in a regular tab to bypass iframe blocks
+            if (url.includes('onrender.com')) {
+                window.open(url, '_blank');
+                return;
+            }
+
+            // Everything else still uses the cloaked method
             const newTab = window.open('about:blank', '_blank');
             if (!newTab) {
                 alert('Popup blocked!');
@@ -230,10 +234,6 @@
             newTab.document.open();
             newTab.document.write(content);
             newTab.document.close();
-        }
-
-        function launchRegular(url) {
-            window.open(url, '_blank');
         }
     </script>
 </body>
